@@ -1,5 +1,6 @@
 ### This template is for the class exercises covered in M01_L02_review-files for CS 22B.
 #hi hope this works :)
+#testing to see if this merges
 
 ## root folder if applicable
 # root='/path/to/folder/'
