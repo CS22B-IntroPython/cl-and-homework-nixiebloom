@@ -37,21 +37,23 @@ for e in employees:
 
 ### Part B: Classify each employee based on the average performance score and print out the classification for each employee
 ## Let's make this a function so we can reuse it in Part D
-ec_list = []
-def employee_classification (employees):
-    for e in employees:
-        if e["average_score"] >= 4.5:
-            ec_list = 'Excellent'
-        elif e["average_score"] >= 3.3:
-            ec_list = 'Good'
-        else: 
-            ec_list= 'Needs Improvement'
- 
+#ec_list = []
+#def employee_classification (employees):
+for e in employees:
+    if e["average_score"] >= 4.5:
+        #print("Excellent")
+        e["class"] = 'Excellent'
+    elif e["average_score"] >= 3.3:
+        e["class"] = 'Good'
+        #print("Good")
+    else:
+        e["class"] = 'Needs Improvement' 
+         #print('Needs Improvement')
+
 print(employees)
-#print(f"{e['name']}: {e['classification']}")
     
-ec_list = employee_classification(employees)
-print(ec_list)
+#ec_list = employee_classification(employees)
+#print(ec_list)
 
 
 ### Part C. Find the employee with the highest salary in the "Engineering" department, and
@@ -61,7 +63,7 @@ for e in employees:
         if e["salary"] > highest_salary:
             highest_salary = e["salary"]
 
-print(f"Highest salary: ${highest_salary}")
+print(f"Highest salary in Engineering: ${highest_salary}")
 
 
 ### Part D. Print a dictionary where the keys are the department names and the values are lists of employee names who belong to the "Excellent" category in each department.
@@ -69,3 +71,12 @@ print(f"Highest salary: ${highest_salary}")
 #ec_list = employee_classification(employees)
 
 #for e in ec_list:
+
+excellent_emp = {}
+
+for e in employees:
+    if e["class"] == "Excellent":
+        dept = e["department"]
+        excellent_emp.setdefault(dept, []).append(e["name"])
+
+print(excellent_emp)
