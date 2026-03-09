@@ -57,22 +57,30 @@ print(counts)
 test_pw = ["Short7!", "LongerPass7!", "GoodPassw0rd!", "Bad Passw0rd!", "N0SymbolHereAAA"]
 
 ### step 1: Define variables
-lowercase = re.compile(r"[a-z]")
-uppercase = re.compile(r"[A-Z]")
-digit_case = re.compile(r"7")
-symbol_case = re.compile(r"[!@#$%^&*]")
-space_case = re.compile(r"\S")
-strong = lowercase and uppercase and digit_case and symbol_case and space_case
+#length = len
+#lowercase = re.search(r"[a-z]")
+#uppercase = re.search(r"[A-Z]")
+#digit_case = re.search(r"[0-9]")
+#symbol_case = re.search(r"[!@#$%^&*]")
+#space_case = not re.search(r"\s", pw)
+
 
 ### step 2: Write a function that check password (str) to test cases
-#def check_password(list):
-for pw in test_pw:
-    if strong and len(pw)>9:
-        print("STRONG")
-    else:
-        print("WEAK")
-       
+def check_password(pw):
+    length = len(pw) >= 10
+    lowercase = re.search(r"[a-z]", pw)
+    uppercase = re.search(r"[A-Z]", pw)
+    digit_case = re.search(r"[0-9]",pw)
+    symbol_case = re.search(r"[!@#$%^&*]", pw)
+    space_case = not re.search(r"\s", pw)
 
+
+    if length and lowercase and uppercase and digit_case and symbol_case and space_case:
+        return "STRONG"
+    else:
+        return "WEAK"
+       
 ### step 3: Use case. Test list test_pw
 
-check_password(test_pw)
+for pw in test_pw:
+    print(f"{pw}: {check_password(pw)}")
